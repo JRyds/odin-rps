@@ -12,13 +12,41 @@ function playRound(playerSelection, computerSelection) {
     console.log(`player selection is ${playerSelection}`);
 
     if ((playerSelection === computerSelection)) {
-        return "It's a draw!!";
+        return "D";
     } else if ((playerSelection === "rock" && computerSelection === "scissors") || (playerSelection === "paper" && computerSelection === "rock") || (playerSelection === "scissors" && computerSelection === "paper")) {
-        return "You win!!";
+        return "W";
     } else if ((playerSelection === "rock" && computerSelection === "paper") || (playerSelection === "paper" && computerSelection === "scissors") || (playerSelection === "scissors" && computerSelection === "rock")) {
-        return "You lose!!";
+        return "L";
     };
 };
 
 
-console.log(playRound(playerSelection(), computerSelection()));
+function game() {
+    //keep score
+    let playerScore = 0;
+    let computerScore = 0;
+
+    //play 5 rounds
+    for (let i = 0; i < 5; i++) {
+        let result = playRound(playerSelection(), computerSelection());
+        if (result === "D") {
+            continue;
+        } else if (result === "W") {
+            playerScore = playerScore + 1;
+        } else if (result === "L") {
+            computerScore = computerScore + 1;
+        }
+    }
+
+
+    //reports winner
+
+    if (playerScore > computerScore) {
+        alert("Player Wins!!")
+    } else if (computerScore > playerScore) {
+        alert("Computer Wins!!")
+    }
+
+
+}
+game();
